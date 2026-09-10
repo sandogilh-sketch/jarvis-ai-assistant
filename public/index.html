@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jarvis - AI Assistant con Control de Voz</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🤖 JARVIS</h1>
+            <p class="subtitle">AI Assistant - Gemini + GitHub + 🎤 Voz</p>
+            <div class="user-info" id="userInfo" style="display: none;">
+                <span id="userName"></span>
+                <span id="userStats"></span>
+            </div>
+        </header>
+
+        <!-- EFECTO DE APLAUSO -->
+        <div id="applauseEffect" class="applause-container"></div>
+
+        <div class="tabs">
+            <button class="tab-btn active" data-tab="voice">🎤 Voz</button>
+            <button class="tab-btn" data-tab="chat">💬 Chat</button>
+            <button class="tab-btn" data-tab="github">🐙 GitHub</button>
+            <button class="tab-btn" data-tab="code">💻 Código</button>
+        </div>
+
+        <!-- VOICE TAB (NUEVO) -->
+        <div id="voice" class="tab-content active">
+            <div class="voice-container">
+                <h2>🎤 Control por Voz</h2>
+                <p class="info-text">Haz clic en el micrófono y habla. Jarvis te entenderá y responderá.</p>
+                
+                <div class="mic-button-container">
+                    <button id="micButton" class="mic-button" onclick="toggleMicrophone()">
+                        <span class="mic-icon">🎤</span>
+                        <span class="mic-text">Activar Micrófono</span>
+                    </button>
+                </div>
+
+                <div class="transcription" id="transcription">
+                    <p id="transcriptionText">En espera...</p>
+                </div>
+
+                <div class="voice-response" id="voiceResponse" style="display: none;">
+                    <h3>Respuesta de Jarvis:</h3>
+                    <p id="responseText"></p>
+                    <div class="response-actions">
+                        <button onclick="speakResponse()">🔊 Escuchar Respuesta</button>
+                        <button onclick="clearVoiceResponse()">✕ Limpiar</button>
+                    </div>
+                </div>
+
+                <div class="commands-list">
+                    <h3>🎯 Comandos de Voz Disponibles:</h3>
+                    <div id="commandsList" class="commands-grid"></div>
+                </div>
+
+                <div class="voice-options">
+                    <h3>⚙️ Opciones</h3>
+                    <label>
+                        <input type="checkbox" id="autoSpeak" checked /> 
+                        Responder automáticamente con voz
+                    </label>
+                    <label>
+                        <input type="checkbox" id="executeCommands" checked /> 
+                        Ejecutar comandos automáticamente
+                    </label>
+                </div>
+            </div>
+        </div>
+
+        <!-- CHAT TAB -->
+        <div id="chat" class="tab-content">
+            <div class="chat-box">
+                <div class="messages" id="messages"></div>
+                <div class="input-group">
+                    <input type="text" id="chatInput" placeholder="Escribe tu mensaje..." />
+                    <button onclick="sendMessage()">Enviar</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- GITHUB TAB -->
+        <div id="github" class="tab-content">
+            <div class="github-section">
+                <h2>📦 Repositorios</h2>
+                <button onclick="loadRepositories()" class="btn-primary">Cargar Repositorios</button>
+                <div id="reposList" class="list-container"></div>
+            </div>
+
+            <div class="github-section">
+                <h2>🐛 Issues</h2>
+                <div class="input-group">
+                    <input type="text" id="repoInput" placeholder="owner/repo" />
+                    <button onclick="loadIssues()" class="btn-primary">Cargar Issues</button>
+                </div>
+                <div id="issuesList" class="list-container"></div>
+            </div>
+
+            <div class="github-section">
+                <h2>✨ Crear Issue</h2>
+                <input type="text" id="issueTitle" placeholder="Título" />
+                <textarea id="issueBody" placeholder="Descripción (opcional)"></textarea>
+                <input type="text" id="issueRepo" placeholder="owner/repo" />
+                <button onclick="createIssue()" class="btn-primary">Crear</button>
+            </div>
+        </div>
+
+        <!-- CODE TAB -->
+        <div id="code" class="tab-content">
+            <div class="code-section">
+                <h2>🔍 Analizar Código</h2>
+                <select id="language">
+                    <option value="javascript">JavaScript</option>
+                    <option value="python">Python</option>
+                    <option value="java">Java</option>
+                    <option value="cpp">C++</option>
+                    <option value="csharp">C#</option>
+                    <option value="go">Go</option>
+                    <option value="rust">Rust</option>
+                </select>
+                <textarea id="codeInput" placeholder="Pega tu código aquí..."></textarea>
+                <button onclick="analyzeCode()" class="btn-primary">Analizar</button>
+                <div id="analysisResult" class="result-box"></div>
+            </div>
+
+            <div class="code-section">
+                <h2>📚 Generar Documentación</h2>
+                <textarea id="docCodeInput" placeholder="Pega tu código aquí..."></textarea>
+                <button onclick="generateDocs()" class="btn-primary">Generar Docs</button>
+                <div id="docsResult" class="result-box"></div>
+            </div>
+        </div>
+    </div>
+
+    <script src="voice.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
