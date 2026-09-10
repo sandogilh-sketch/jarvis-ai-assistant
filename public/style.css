@@ -1,0 +1,250 @@
+/* VOICE CONTAINER */
+.voice-container {
+    padding: 20px;
+}
+
+.info-text {
+    color: #666;
+    font-size: 1.1em;
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+/* MICROPHONE BUTTON */
+.mic-button-container {
+    display: flex;
+    justify-content: center;
+    margin: 30px 0;
+}
+
+.mic-button {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border: none;
+    font-size: 2em;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 10px 30px rgba(102, 126, 234, 0.4);
+    transition: all 0.3s;
+}
+
+.mic-button:hover {
+    transform: scale(1.05);
+    box-shadow: 0 15px 40px rgba(102, 126, 234, 0.5);
+}
+
+.mic-button.active {
+    background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+    animation: pulse 1s infinite;
+}
+
+@keyframes pulse {
+    0% {
+        box-shadow: 0 10px 30px rgba(245, 87, 108, 0.4);
+    }
+    50% {
+        box-shadow: 0 15px 50px rgba(245, 87, 108, 0.6);
+    }
+    100% {
+        box-shadow: 0 10px 30px rgba(245, 87, 108, 0.4);
+    }
+}
+
+.mic-icon {
+    font-size: 3em;
+    margin-bottom: 5px;
+}
+
+.mic-text {
+    font-size: 0.8em;
+    font-weight: 600;
+}
+
+/* TRANSCRIPTION */
+.transcription {
+    background: #f5f5f5;
+    border: 2px solid #ddd;
+    border-radius: 10px;
+    padding: 20px;
+    margin: 20px 0;
+    min-height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#transcriptionText {
+    color: #666;
+    font-size: 1.1em;
+    text-align: center;
+    margin: 0;
+}
+
+.transcription.listening {
+    border-color: #667eea;
+    background: #f0f4ff;
+}
+
+.transcription.recognized {
+    border-color: #4caf50;
+    background: #e8f5e9;
+}
+
+#transcriptionText.recognized {
+    color: #2e7d32;
+    font-weight: 600;
+}
+
+/* VOICE RESPONSE */
+.voice-response {
+    background: #e8f5e9;
+    border-left: 4px solid #4caf50;
+    border-radius: 8px;
+    padding: 20px;
+    margin: 20px 0;
+}
+
+.voice-response h3 {
+    color: #2e7d32;
+    margin-top: 0;
+}
+
+#responseText {
+    color: #1b5e20;
+    font-size: 1.05em;
+    line-height: 1.6;
+    margin: 10px 0;
+}
+
+.response-actions {
+    display: flex;
+    gap: 10px;
+    margin-top: 15px;
+}
+
+.response-actions button {
+    padding: 10px 15px;
+    font-size: 0.9em;
+}
+
+/* COMMANDS LIST */
+.commands-list {
+    background: #f9f9f9;
+    border-radius: 10px;
+    padding: 20px;
+    margin: 30px 0;
+}
+
+.commands-list h3 {
+    color: #667eea;
+    margin-top: 0;
+}
+
+.commands-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 10px;
+}
+
+.command-tag {
+    background: white;
+    border: 1px solid #667eea;
+    border-radius: 20px;
+    padding: 8px 15px;
+    color: #667eea;
+    font-size: 0.9em;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.command-tag:hover {
+    background: #667eea;
+    color: white;
+    transform: translateY(-2px);
+}
+
+/* VOICE OPTIONS */
+.voice-options {
+    background: #f0f4ff;
+    border-radius: 10px;
+    padding: 20px;
+    margin: 20px 0;
+}
+
+.voice-options h3 {
+    color: #667eea;
+    margin-top: 0;
+}
+
+.voice-options label {
+    display: block;
+    margin: 10px 0;
+    color: #333;
+    cursor: pointer;
+    font-size: 1em;
+}
+
+.voice-options input[type="checkbox"] {
+    margin-right: 10px;
+    cursor: pointer;
+    width: 18px;
+    height: 18px;
+}
+
+/* STATUS INDICATOR */
+.status-indicator {
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    margin-left: 10px;
+    background: #ccc;
+}
+
+.status-indicator.listening {
+    background: #667eea;
+    animation: blink 1s infinite;
+}
+
+.status-indicator.speaking {
+    background: #f5576c;
+    animation: blink 0.5s infinite;
+}
+
+@keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.5; }
+}
+
+/* RESPONSIVE */
+@media (max-width: 600px) {
+    .mic-button {
+        width: 100px;
+        height: 100px;
+        font-size: 1.5em;
+    }
+
+    .mic-icon {
+        font-size: 2em;
+    }
+
+    .commands-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .response-actions {
+        flex-wrap: wrap;
+    }
+
+    .response-actions button {
+        flex: 1;
+        min-width: 120px;
+    }
+}
